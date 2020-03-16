@@ -94,7 +94,49 @@ void myClass::playVSEasy()
 		}
 		else
 		{
-			// Min Max Code needed
+			bool notPlaced = true;
+			char compToken = 'O';
+
+			int RandRow;
+			int RandCol;
+
+			srand(time(NULL));
+
+			while (notPlaced)
+			{
+				// Gets random locations on board
+				RandRow = rand() % 4;
+				RandCol = rand() % 4;
+
+				// Checks to see if can place at locaiton
+				if (checkBoard(RandRow, RandCol, compToken))
+				{
+					placeOnBoard(compToken, RandRow, RandCol);
+					notPlaced = false;
+				}
+			}
+
+			// Checks to see if comp won
+			if (winCheck(compToken))
+			{
+				system("CLS");
+				cout << compToken << " - Computer Wins!" << endl;
+				Sleep(1000);
+			}
+
+			// Checks to see if the game is a draw
+			if (drawCheck())
+			{
+				system("CLS");
+				cout << "Game is a draw" << endl;
+				Sleep(2000);
+				return;
+			}
+			
+			playersTurn = true;
+
+			// Reset for next round
+			notPlaced = true;
 		}
 	}
 }
