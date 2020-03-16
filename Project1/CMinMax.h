@@ -1,11 +1,18 @@
 #pragma once
+
+#include <vector>
+
+using namespace std;
+
 class CMinMax
 {
 public:
-	CMinMax(char gameboard[3][3], char userToken);
+	CMinMax(char gameBoard[3][3]);
 	~CMinMax();
 
-	void GenChildNodes(char gameboard[3][3], char userToken);
+	void GenNodes(char gameboard[3][3], char userToken);
+
+	vector<CMinMax*> vec;
 private:
 
 };
