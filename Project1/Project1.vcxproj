@@ -138,10 +138,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CMinMax.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="myClass.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CMinMax.h" />
     <ClInclude Include="myClass.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

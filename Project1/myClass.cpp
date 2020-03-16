@@ -1,4 +1,5 @@
 #include "myClass.h"
+#include "CMinMax.h"
 
 myClass::myClass()
 {
@@ -143,6 +144,8 @@ void myClass::playVSEasy()
 
 void myClass::playVSHard()
 {
+	CMinMax hardAI;
+
 	bool playersTurn = true;
 	bool notWon = true;
 
@@ -380,26 +383,16 @@ void myClass::placeOnBoard(char userToken, int row, int column)
 bool myClass::drawCheck()
 {
 	bool isDraw;
-	int countUp = 0;
 
 	for (int i = 0; i <= 2; i++)
 	{
 		for (int j = 0; j <= 2; j++)
 		{
-			if (gameBoard[i][j] != '-')
+			if (gameBoard[i][j] == '-')
 			{
-				countUp++;
-			}
-			else if (countUp == 9)
-			{
-				isDraw = true;
-			}
-			else
-			{
-				isDraw = false;
+				return(true);
 			}
 		}
 	}
-
-	return(isDraw);
+	return(false);
 }
