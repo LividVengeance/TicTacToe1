@@ -21,6 +21,7 @@ public:
 	vector<CMinMax*> vecGameBoards;
 private:
 
+	char MyMove;
 };
 
 

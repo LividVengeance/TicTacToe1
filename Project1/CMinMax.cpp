@@ -3,6 +3,19 @@
 CMinMax::CMinMax(char gameBoard[3][3], char userToken)
 {
 	char newGameBoard[3][3];
+	char MyMove = userToken;
+	char NextMove;
+
+
+	if (MyMove == 'O')
+	{
+		NextMove = 'X';
+	}
+	else
+	{
+		NextMove = 'O';
+	}
+
 
 	if (winCheck(gameBoard, userToken)) // Checks to see if computer won
 	{
@@ -26,16 +39,40 @@ CMinMax::CMinMax(char gameBoard[3][3], char userToken)
 				if (gameBoard[i][j] == '-')
 				{
 					createNewBoard(gameBoard, newGameBoard);
-					newGameBoard[i][j] = userToken;
-					CMinMax* newNode = new CMinMax(newGameBoard, userToken);
+					newGameBoard[i][j] = NextMove;
+					CMinMax* newNode = new CMinMax(newGameBoard, NextMove);
 
 					vecGameBoards.push_back(newNode);
 				}
 			}
 		}
 
-		// Add up all child heristicks
-		// Based on min max thing
+		// Is the computers turn
+		if (MyMove == 'O')
+		{
+			// Max
+			heuristic = -INFINITE;
+			for (int i = 0; i < vecGameBoards.size()-1; i++)
+			{
+				if (heuristic < vecGameBoards[i]->heuristic)
+				{
+					heuristic = vecGameBoards[i]->heuristic;
+				}
+			}
+		}
+		// Is the players turn
+		else
+		{
+			// Min
+			heuristic = INFINITE;
+			for (int j = 0; j < vecGameBoards.size() - 1; j++)
+			{
+				if (heuristic > vecGameBoards[j]->heuristic)
+				{
+					heuristic = vecGameBoards[j]->heuristic;
+				}
+			}
+		}
 	}
 
 	
