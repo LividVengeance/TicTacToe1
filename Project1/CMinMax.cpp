@@ -6,7 +6,7 @@ CMinMax::CMinMax(char gameBoard[3][3], char userToken)
 	char MyMove = userToken;
 	char NextMove;
 
-
+	// Checks if computers move or next for MinMax
 	if (MyMove == 'O')
 	{
 		NextMove = 'X';
@@ -40,6 +40,7 @@ CMinMax::CMinMax(char gameBoard[3][3], char userToken)
 				{
 					createNewBoard(gameBoard, newGameBoard);
 					newGameBoard[i][j] = NextMove;
+					
 					CMinMax* newNode = new CMinMax(newGameBoard, NextMove);
 
 					vecGameBoards.push_back(newNode);
@@ -51,7 +52,7 @@ CMinMax::CMinMax(char gameBoard[3][3], char userToken)
 		if (MyMove == 'O')
 		{
 			// Max
-			heuristic = -INFINITE;
+			heuristic = -999999;
 			for (int i = 0; i < vecGameBoards.size()-1; i++)
 			{
 				if (heuristic < vecGameBoards[i]->heuristic)
@@ -64,7 +65,7 @@ CMinMax::CMinMax(char gameBoard[3][3], char userToken)
 		else
 		{
 			// Min
-			heuristic = INFINITE;
+			heuristic = 999999;
 			for (int j = 0; j < vecGameBoards.size() - 1; j++)
 			{
 				if (heuristic > vecGameBoards[j]->heuristic)
@@ -80,6 +81,25 @@ CMinMax::CMinMax(char gameBoard[3][3], char userToken)
 
 CMinMax::~CMinMax()
 {
+}
+
+
+int CMinMax::GetBestMove()
+{
+	CMinMax* BestNode = vecGameBoards[0];
+
+	int position;
+
+	for (int i = 0; i < vecGameBoards.size() - 1; i++)
+	{
+		if (BestNode->heuristic > vecGameBoards[i]->heuristic)
+		{
+			BestNode = vecGameBoards[i];
+			position = i+1;
+		}
+	}
+
+	return(position);
 }
 
 void CMinMax::createNewBoard(char gameBoard[3][3], char newGameBoard[3][3])

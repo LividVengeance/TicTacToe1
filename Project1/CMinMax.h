@@ -17,6 +17,8 @@ public:
 	bool winCheck(char gameBoard[3][3], char userToken);
 	bool drawCheck(char gameBoard[3][3]);
 
+	int GetBestMove();
+
 	int heuristic;
 	vector<CMinMax*> vecGameBoards;
 private:

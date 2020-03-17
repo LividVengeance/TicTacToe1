@@ -35,7 +35,7 @@ void playMenu()
 	}
 	else if (Option == 2)
 	{
-
+		objClass.playVSHard();
 	}
 	else if (Option == 3)
 	{

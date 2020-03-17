@@ -1,6 +1,10 @@
 #include "myClass.h"
 #include "CMinMax.h"
 
+
+
+
+
 myClass::myClass()
 {
 	for (int i = 0; i <= 2; i++)
@@ -144,8 +148,6 @@ void myClass::playVSEasy()
 
 void myClass::playVSHard()
 {
-	//CMinMax hardAI;
-
 	bool playersTurn = true;
 	bool notWon = true;
 
@@ -203,6 +205,17 @@ void myClass::playVSHard()
 		}
 		else
 		{
+			char compToken = 'O';
+			system("CLS");
+			PrintBoard();
+
+			CMinMax hardAI(gameBoard, compToken);
+
+			int position = hardAI.GetBestMove();
+			Vector2D rowCol = hardAIRowCol(position);
+			placeOnBoard(compToken, rowCol.x, rowCol.y);
+
+
 			// Min Max Code needed
 		}
 	}
@@ -393,4 +406,28 @@ bool myClass::drawCheck()
 		}
 	}
 	return(false);
+}
+
+Vector2D myClass::hardAIRowCol(int position)
+{
+
+	Vector2D RowCol;
+	int countUp = 0;
+
+	for (int i = 0; i < 2; i++)
+	{
+		for (int j = 0; j < 2; j++)
+		{
+			if (gameBoard[i][j] == '-')
+			{
+				countUp++;
+				if (countUp == position)
+				{
+					RowCol.x = i;
+					RowCol.y = j;
+				}
+			}
+		}
+	}
+	return(RowCol);
 }
