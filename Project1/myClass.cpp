@@ -144,7 +144,7 @@ void myClass::playVSEasy()
 
 void myClass::playVSHard()
 {
-	CMinMax hardAI;
+	//CMinMax hardAI;
 
 	bool playersTurn = true;
 	bool notWon = true;
@@ -382,8 +382,6 @@ void myClass::placeOnBoard(char userToken, int row, int column)
 
 bool myClass::drawCheck()
 {
-	bool isDraw;
-
 	for (int i = 0; i <= 2; i++)
 	{
 		for (int j = 0; j <= 2; j++)
