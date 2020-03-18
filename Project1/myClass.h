@@ -29,5 +29,6 @@ public:
 	void placeOnBoard(char userToken, int row, int column);
 	bool drawCheck();
 	Vector2D hardAIRowCol(int position);
+	void gameBoardReset();
 };
 

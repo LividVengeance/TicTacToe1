@@ -32,6 +32,7 @@ void playMenu()
 	if (Option == 1)
 	{
 		objClass.playVSEasy();
+		return;
 	}
 	else if (Option == 2)
 	{
@@ -41,8 +42,10 @@ void playMenu()
 	{
 		objClass.playVSPlay();
 	}
-	
-	
+	else if (Option == 4)
+	{
+		return;
+	}
 	objClass.PrintBoard();
 }
 
@@ -85,6 +88,9 @@ void mainMenu()
 
 int main()
 {
-	mainMenu();
+	while (true)
+	{
+		mainMenu();
+	}
 	return(0);
 }

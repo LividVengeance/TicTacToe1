@@ -40,6 +40,7 @@ void myClass::PrintBoard()
 
 void myClass::playVSEasy()
 {
+	gameBoardReset();
 	bool playersTurn = true;
 	bool notWon = true;
 
@@ -82,8 +83,9 @@ void myClass::playVSEasy()
 			if (winCheck(playerToken))
 			{
 				system("CLS");
-				cout << "Player -  ' " << playerToken << " ' " << " has won the game!" << endl;
-				Sleep(1000);
+				cout << endl << endl << "		Player -  ' " << playerToken << " ' " << " has won the game!" << endl;
+				Sleep(2000);
+				return;
 			}
 
 			// Checks to see if the game is a draw
@@ -122,15 +124,16 @@ void myClass::playVSEasy()
 			if (winCheck(compToken))
 			{
 				system("CLS");
-				cout << compToken << " - Computer Wins!" << endl;
-				Sleep(1000);
+				cout << endl << endl << "		" << compToken << " - Computer Wins!" << endl;
+				Sleep(2000);
+				return;
 			}
 
 			// Checks to see if the game is a draw
 			if (drawCheck())
 			{
 				system("CLS");
-				cout << "Game is a draw" << endl;
+				cout << endl << endl << "			Game is a draw" << endl;
 				Sleep(2000);
 				return;
 			}
@@ -145,6 +148,7 @@ void myClass::playVSEasy()
 
 void myClass::playVSHard()
 {
+	gameBoardReset();
 	bool playersTurn = true;
 	bool notWon = true;
 
@@ -178,15 +182,14 @@ void myClass::playVSHard()
 			{
 				placeOnBoard(playerToken, playerRow, playerCol);
 				system("CLS");
-				
 			}
 
 			// Checks to see if player has won
 			if (winCheck(playerToken))
 			{
 				system("CLS");
-				cout << "Player -  ' " << playerToken << " ' " << " has won the game!" << endl;
-				Sleep(1000);
+				cout << endl << endl << "		Player -  ' " << playerToken << " ' " << " has won the game!" << endl;
+				Sleep(2000);
 				return;
 			}
 
@@ -219,8 +222,8 @@ void myClass::playVSHard()
 			if (winCheck(compToken))
 			{
 				system("CLS");
-				cout << "Computer Won! -  ' " << compToken << " ' " << " has won the game!" << endl;
-				Sleep(1000);
+				cout << endl << endl << "		Computer Won! -  ' " << compToken << " ' " << " has won the game!" << endl;
+				Sleep(2000);
 				return;
 			}
 
@@ -241,7 +244,7 @@ void myClass::playVSHard()
 
 void myClass::playVSPlay(bool playerOneTurn)
 {
-	//bool playerOneTurn = true;
+	gameBoardReset();
 	bool notWon = true;
 
 	while (notWon)
@@ -310,10 +313,10 @@ void myClass::playVSPlay(bool playerOneTurn)
 			PrintBoard();
 			// Ask player two for place location
 			int playerTwoRow;
-			cout << "Player Two - Please enter the row you would like to place" << endl;
+			cout << "Player Two - Please enter the ROW you would like to place" << endl;
 			cin >> playerTwoRow;
 			int playerTwoCol;
-			cout << "Player Two - Please enter the column you would like to place" << endl;
+			cout << "Player Two - Please enter the COLUMN you would like to place" << endl;
 			cin >> playerTwoCol;
 
 			// Checks to see if can place at location
@@ -334,8 +337,8 @@ void myClass::playVSPlay(bool playerOneTurn)
 			if (winCheck(playerTwoToken))
 			{
 				system("CLS");
-				cout << "Player Two Wins - " << playerTwoToken << endl;
-				Sleep(1000);
+				cout << endl << endl <<  "		Player Two Wins - " << playerTwoToken << endl;
+				Sleep(2000);
 				return;
 			}
 
@@ -450,4 +453,15 @@ Vector2D myClass::hardAIRowCol(int position)
 		}
 	}
 	return(RowCol);
+}
+
+void myClass::gameBoardReset()
+{
+	for (int i = 0; i <= 2; i++)
+	{
+		for (int j = 0; j <= 2; j++)
+		{
+			gameBoard[i][j] = '-';
+		}
+	}
 }
