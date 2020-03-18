@@ -32,14 +32,17 @@ void playMenu()
 
 	if (Option == 1)
 	{
+		objClass.gameBoardReset();
 		objClass.playVSEasy();
 	}
 	else if (Option == 2)
 	{
+		objClass.gameBoardReset();
 		objClass.playVSHard();
 	}
 	else if (Option == 3)
 	{
+		objClass.gameBoardReset();
 		objClass.playVSPlay();
 	}
 	else if (Option == 4)

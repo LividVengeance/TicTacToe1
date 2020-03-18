@@ -40,7 +40,6 @@ void myClass::PrintBoard()
 
 void myClass::playVSEasy()
 {
-	gameBoardReset();
 	bool playersTurn = true;
 	bool notWon = true;
 
@@ -148,7 +147,6 @@ void myClass::playVSEasy()
 
 void myClass::playVSHard()
 {
-	gameBoardReset();
 	bool playersTurn = true;
 	bool notWon = true;
 
@@ -244,7 +242,7 @@ void myClass::playVSHard()
 
 void myClass::playVSPlay(bool playerOneTurn)
 {
-	gameBoardReset();
+	
 	bool notWon = true;
 
 	while (notWon)
