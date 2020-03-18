@@ -84,8 +84,6 @@ void myClass::playVSEasy()
 				system("CLS");
 				cout << "Player -  ' " << playerToken << " ' " << " has won the game!" << endl;
 				Sleep(1000);
-				
-				return;
 			}
 
 			// Checks to see if the game is a draw
@@ -94,7 +92,6 @@ void myClass::playVSEasy()
 				system("CLS");
 				cout << "Game is a draw" << endl;
 				Sleep(2000);
-				return;
 			}
 		}
 		else
@@ -181,7 +178,7 @@ void myClass::playVSHard()
 			{
 				placeOnBoard(playerToken, playerRow, playerCol);
 				system("CLS");
-				playersTurn = false;
+				
 			}
 
 			// Checks to see if player has won
@@ -190,7 +187,6 @@ void myClass::playVSHard()
 				system("CLS");
 				cout << "Player -  ' " << playerToken << " ' " << " has won the game!" << endl;
 				Sleep(1000);
-
 				return;
 			}
 
@@ -202,6 +198,8 @@ void myClass::playVSHard()
 				Sleep(2000);
 				return;
 			}
+
+			playersTurn = false;
 		}
 		else
 		{
@@ -209,14 +207,33 @@ void myClass::playVSHard()
 			system("CLS");
 			PrintBoard();
 
+			// Gets best move for AI
 			CMinMax hardAI(gameBoard, compToken);
-
 			int position = hardAI.GetBestMove();
 			Vector2D rowCol = hardAIRowCol(position);
+
 			placeOnBoard(compToken, rowCol.x, rowCol.y);
+			
 
+			// Checks to see if player has won
+			if (winCheck(compToken))
+			{
+				system("CLS");
+				cout << "Computer Won! -  ' " << compToken << " ' " << " has won the game!" << endl;
+				Sleep(1000);
+				return;
+			}
 
-			// Min Max Code needed
+			// Checks to see if the game is a draw
+			if (drawCheck())
+			{
+				system("CLS");
+				cout << "Game is a draw" << endl;
+				Sleep(2000);
+				return;
+			}
+
+			playersTurn = true;
 		}
 	}
 
@@ -395,37 +412,40 @@ void myClass::placeOnBoard(char userToken, int row, int column)
 
 bool myClass::drawCheck()
 {
+
 	for (int i = 0; i <= 2; i++)
 	{
 		for (int j = 0; j <= 2; j++)
 		{
 			if (gameBoard[i][j] == '-')
 			{
-				return(true);
+				return(false);
 			}
 		}
 	}
-	return(false);
+	return(true);
 }
 
 Vector2D myClass::hardAIRowCol(int position)
 {
-
 	Vector2D RowCol;
+	RowCol.x = 0;
+	RowCol.y = 0;
 	int countUp = 0;
 
-	for (int i = 0; i < 2; i++)
+	for (int i = 0; i <= 2; i++)
 	{
-		for (int j = 0; j < 2; j++)
+		for (int j = 0; j <= 2; j++)
 		{
 			if (gameBoard[i][j] == '-')
 			{
-				countUp++;
 				if (countUp == position)
 				{
 					RowCol.x = i;
 					RowCol.y = j;
 				}
+				countUp++;
+
 			}
 		}
 	}

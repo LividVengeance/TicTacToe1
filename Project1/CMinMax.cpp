@@ -2,7 +2,6 @@
 
 CMinMax::CMinMax(char gameBoard[3][3], char userToken)
 {
-	char newGameBoard[3][3];
 	char MyMove = userToken;
 	char NextMove;
 
@@ -39,25 +38,27 @@ CMinMax::CMinMax(char gameBoard[3][3], char userToken)
 				if (gameBoard[i][j] == '-')
 				{
 					createNewBoard(gameBoard, newGameBoard);
-					newGameBoard[i][j] = NextMove;
+					newGameBoard[i][j] = MyMove;
 					
 					CMinMax* newNode = new CMinMax(newGameBoard, NextMove);
 
 					vecGameBoards.push_back(newNode);
+
 				}
 			}
 		}
-
+		int K;
 		// Is the computers turn
 		if (MyMove == 'O')
 		{
 			// Max
 			heuristic = -999999;
-			for (int i = 0; i < vecGameBoards.size()-1; i++)
+			for (int i = 0; i < (vecGameBoards.size()); i++)
 			{
-				if (heuristic < vecGameBoards[i]->heuristic)
+				K = vecGameBoards[i]->GetHeuristic();
+				if (heuristic < K)
 				{
-					heuristic = vecGameBoards[i]->heuristic;
+					heuristic = K;
 				}
 			}
 		}
@@ -66,21 +67,37 @@ CMinMax::CMinMax(char gameBoard[3][3], char userToken)
 		{
 			// Min
 			heuristic = 999999;
-			for (int j = 0; j < vecGameBoards.size() - 1; j++)
+			for (int j = 0; j < (vecGameBoards.size()); j++)
 			{
-				if (heuristic > vecGameBoards[j]->heuristic)
+				K = vecGameBoards[j]->GetHeuristic();
+				if (heuristic > K)
 				{
-					heuristic = vecGameBoards[j]->heuristic;
+					heuristic = K;
 				}
 			}
 		}
+
+		if (abs(heuristic) > 10)
+		{
+			heuristic++;
+			return;
+		}
+
 	}
 
-	
 }
 
 CMinMax::~CMinMax()
 {
+}
+
+int CMinMax::GetHeuristic()
+{
+	if (abs(heuristic) > 10)
+	{
+		return heuristic;
+	}
+	return heuristic;
 }
 
 
@@ -88,14 +105,14 @@ int CMinMax::GetBestMove()
 {
 	CMinMax* BestNode = vecGameBoards[0];
 
-	int position;
+	int position = 0;
 
-	for (int i = 0; i < vecGameBoards.size() - 1; i++)
+	for (int i = 0; i < vecGameBoards.size() -1; i++)
 	{
-		if (BestNode->heuristic > vecGameBoards[i]->heuristic)
+		if (BestNode->heuristic < vecGameBoards[i]->heuristic)
 		{
 			BestNode = vecGameBoards[i];
-			position = i+1;
+			position = i;
 		}
 	}
 
@@ -149,17 +166,15 @@ bool CMinMax::winCheck(char gameBoard[3][3], char userToken)
 
 bool CMinMax::drawCheck(char gameBoard[3][3])
 {
-	bool isDraw;
-
 	for (int i = 0; i <= 2; i++)
 	{
 		for (int j = 0; j <= 2; j++)
 		{
 			if (gameBoard[i][j] == '-')
 			{
-				return(true);
+				return(false);
 			}
 		}
 	}
-	return(false);
+	return(true);
 }

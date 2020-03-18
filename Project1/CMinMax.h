@@ -11,6 +11,8 @@ public:
 	CMinMax(char gameBoard[3][3], char userToken);
 	~CMinMax();
 
+	int GetHeuristic();
+
 
 	void createNewBoard(char gameBoard[3][3], char newGameBoard[3][3]);
 
@@ -19,10 +21,11 @@ public:
 
 	int GetBestMove();
 
-	int heuristic;
+	
+	char newGameBoard[3][3];
 	vector<CMinMax*> vecGameBoards;
 private:
-
+	int heuristic;
 	char MyMove;
 };
 
