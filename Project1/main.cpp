@@ -1,5 +1,6 @@
 #include <iostream>
 #include <windows.h>
+#include <cstdlib>
 
 #include "myClass.h"
 
@@ -32,7 +33,6 @@ void playMenu()
 	if (Option == 1)
 	{
 		objClass.playVSEasy();
-		return;
 	}
 	else if (Option == 2)
 	{
@@ -73,12 +73,13 @@ void mainMenu()
 	}
 	else if (Option == 2)
 	{
-		system("exit");
+		exit(0);
 	}
 	else
 	{
+		// If invaild input by user
 		system("CLS");
-		cout << endl << endl << "Please Enter A Vaild Input" << endl;
+		cout << endl << endl << "		Please Enter A Vaild Input" << endl;
 		cin.clear();
 		cin.ignore(1000, '\n');
 		Sleep(1000);
@@ -88,6 +89,7 @@ void mainMenu()
 
 int main()
 {
+	// Allows the menus to go back to each other
 	while (true)
 	{
 		mainMenu();

@@ -26,12 +26,12 @@ void myClass::PrintBoard()
 	cout << endl;
 	cout << "	,-----------------------------------------,	" << endl;
 	cout << "	`-----------------------------------------' " << endl;
+	cout << "	  |      Col 0      Col 1      Col 2    |   " << endl;
+	cout << "	  |Row 0 [ " << gameBoard[0][0] << " ]      [ " << gameBoard[0][1] << " ]      [ " << gameBoard[0][2] << " ]    |   " << endl;
 	cout << "	  |                                     |   " << endl;
-	cout << "	  |      [ " << gameBoard[0][0] << " ]      [ " << gameBoard[0][1] << " ]      [ " << gameBoard[0][2] << " ]    |   " << endl;
+	cout << "	  |Row 1 [ " << gameBoard[1][0] << " ]      [ " << gameBoard[1][1] << " ]      [ " << gameBoard[1][2] << " ]    |   " << endl;
 	cout << "	  |                                     |   " << endl;
-	cout << "	  |      [ " << gameBoard[1][0] << " ]      [ " << gameBoard[1][1] << " ]      [ " << gameBoard[1][2] << " ]    |   " << endl;
-	cout << "	  |                                     |   " << endl;
-	cout << "	  |      [ " << gameBoard[2][0] << " ]      [ " << gameBoard[2][1] << " ]      [ " << gameBoard[2][2] << " ]    |   " << endl;
+	cout << "	  |Row 2 [ " << gameBoard[2][0] << " ]      [ " << gameBoard[2][1] << " ]      [ " << gameBoard[2][2] << " ]    |   " << endl;
 	cout << "	  |                                     |   " << endl;
 	cout << "	,-----------------------------------------,	" << endl;
 	cout << "	`-----------------------------------------' " << endl;
